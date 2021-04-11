@@ -1,3 +1,5 @@
+//Bevan Philip
+//1001527799
 
 #include <assert.h>
 #include <stdio.h>
@@ -58,9 +60,7 @@ struct _block
    char   padding[3];
 };
 
-//struct _block *tracker = NULL;
 struct _block *heapList = NULL; /* Free list to track the _blocks available */
-
 /*
  * \brief findFreeBlock
  *
@@ -73,17 +73,16 @@ struct _block *heapList = NULL; /* Free list to track the _blocks available */
  * \TODO Implement Best Fit
  * \TODO Implement Worst Fit
  */
+
 struct _block *findFreeBlock(struct _block **last, size_t size)
 {
   struct _block *curr = heapList;
   struct _block *last_reuse = NULL;
-  //keeps track of the block for next fit
+
   static struct _block * tracker = NULL;
   if( tracker == NULL ) tracker = heapList;
 
-
   #if defined FIT && FIT == 0
-   /* First fit */
    while (curr && !(curr->free && curr->size >= size))
    {
       *last = curr;
