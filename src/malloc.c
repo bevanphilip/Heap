@@ -79,9 +79,6 @@ struct _block *findFreeBlock(struct _block **last, size_t size)
   struct _block *curr = heapList;
   struct _block *last_reuse = NULL;
 
-  static struct _block * tracker = NULL;
-  if( tracker == NULL ) tracker = heapList;
-
   #if defined FIT && FIT == 0
    while (curr && !(curr->free && curr->size >= size))
    {
@@ -93,22 +90,22 @@ struct _block *findFreeBlock(struct _block **last, size_t size)
   #if defined BEST && BEST == 0
   #if 0
   #else
-    struct _block *m = NULL;
-    size_t msize = INT_MAX;
+    struct _block *k = NULL;
+    size_t sz = INT_MAX;
     while(curr != NULL)
     {
       if(curr->size  >= size && curr->free == true)
       {
-        if(curr->size < msize)
+        if(curr->size < sz)
         {
-          msize = curr->size;
-          m = curr;
+          sz = curr->size;
+          k = curr;
         }
       }
       *last = curr;
       curr = curr->next;
     }
-    curr = m;
+    curr = k;
   #endif
   #endif
 
