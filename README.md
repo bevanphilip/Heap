@@ -13,7 +13,7 @@ VM is recommended to run this project
 
 Installation
 
-git clone https://github.com/PrajRana/HeapAssignment
+git clone https://github.com/bevanphilip/Heap
 
 To Run
 
